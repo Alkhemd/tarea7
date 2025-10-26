@@ -174,3 +174,27 @@ Alternatively, run `flutter run` and code generation will take place automatical
 [very_good_analysis_badge]: https://img.shields.io/badge/style-very_good_analysis-B22C89.svg
 [very_good_analysis_link]: https://pub.dev/packages/very_good_analysis
 [very_good_cli_link]: https://github.com/VeryGoodOpenSource/very_good_cli
+
+---
+
+## Resolución de Conflictos de Dependencias
+
+Durante la configuración inicial del proyecto, nos encontramos con un problema complejo de resolución de dependencias al intentar añadir los paquetes `freezed` y `json_serializable`. Este problema surge porque la guía del curso está basada en versiones de paquetes más antiguas que las que utiliza la plantilla de `very_good_cli`.
+
+### El Conflicto
+
+El conflicto principal se debía a incompatibilidades de versiones entre varios paquetes clave:
+
+1.  **`freezed_annotation`**: La guía especificaba la versión `^2.4.1`, pero inicialmente instalamos una versión más reciente, lo que causó un conflicto con `freezed`.
+2.  **`build` vs. `build_runner`**: La versión de `freezed` de la guía (`^2.4.6`) dependía de una versión antigua del paquete `build` (`^2.3.1`), mientras que la versión de `build_runner` en el proyecto (`^2.9.0`) requería una versión mucho más nueva (`^4.0.0`).
+
+### La Solución
+
+Para resolver estos conflictos, seguimos los siguientes pasos:
+
+1.  **Corregir `freezed_annotation`**: Primero, nos aseguramos de tener la versión correcta de `freezed_annotation` que la guía especificaba, ejecutando `flutter pub add freezed_annotation:^2.4.1`.
+2.  **Degradar `build_runner`**: Para hacer `build_runner` compatible con `freezed`, tuvimos que "rebajar" su versión. Editamos manualmente el archivo `pubspec.yaml` y cambiamos la línea `build_runner: ^2.9.0` por `build_runner: ^2.3.3`.
+3.  **Actualizar Dependencias**: Después de editar el `pubspec.yaml`, ejecutamos `flutter pub get` para aplicar los cambios y sincronizar las dependencias del proyecto.
+4.  **Instalación Final**: Con los conflictos resueltos, pudimos finalmente añadir las versiones correctas de `freezed` y `json_serializable` al proyecto.
+
+Este proceso es un buen ejemplo de los desafíos que pueden surgir al trabajar con ecosistemas de paquetes complejos y guías desactualizadas, y cómo resolverlos de manera sistemática.

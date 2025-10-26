@@ -9,17 +9,24 @@ environment:
 
 dependencies:
   bloc: ^9.0.1
+  dio: ^5.9.0
   flutter:
     sdk: flutter
   flutter_bloc: ^9.1.1
   flutter_localizations:
     sdk: flutter
+  flutter_riverpod: ^3.0.3
+  freezed_annotation: 2.4.1
   intl: ^0.20.2
+  json_annotation: 4.8.1
 
 dev_dependencies:
   bloc_test: ^10.0.0
+  build_runner: ^2.3.3
   flutter_test:
     sdk: flutter
+  freezed: 2.4.6
+  json_serializable: 6.7.1
   mocktail: ^1.0.4
   very_good_analysis: ^10.0.0
 
