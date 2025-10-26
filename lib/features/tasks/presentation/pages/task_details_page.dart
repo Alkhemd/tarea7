@@ -16,13 +16,15 @@ class _TaskDetailsPageState extends ConsumerState<TaskDetailsPage> {
     super.initState();
     // Fetch the task details when the page is initialized
     Future.microtask(
-      () => ref.read(tasksProvider.notifier).getTaskDetails(widget.taskId),
+      () => ref
+          .read(tasksProvider.notifier)
+          .getTaskDetails(widget.taskId),
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    final taskAsyncValue = ref.watch(tasksProvider);
+  final taskAsyncValue = ref.watch(tasksProvider);
 
     return Scaffold(
       backgroundColor: const Color(0xFFF5F5F5),
@@ -91,12 +93,14 @@ class _TaskDetailsPageState extends ConsumerState<TaskDetailsPage> {
                         label: Text(
                           task.completed ? 'Completed' : 'Pending',
                           style: TextStyle(
-                            color:
-                                task.completed ? Colors.white : Colors.black,
+                            color: task.completed
+                                ? Colors.white
+                                : Colors.black,
                           ),
                         ),
-                        backgroundColor:
-                            task.completed ? Colors.green : Colors.amber,
+                        backgroundColor: task.completed
+                            ? Colors.green
+                            : Colors.amber,
                       ),
                     ],
                   ),

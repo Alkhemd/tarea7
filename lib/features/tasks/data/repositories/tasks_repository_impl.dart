@@ -69,4 +69,15 @@ class TasksRepositoryImpl implements TasksRepository {
       throw NetworkException('Failed to fetch tasks: $e');
     }
   }
+
+  @override
+  Future<void> deleteTask(int taskId) async {
+    try {
+      await _remoteDataSource.deleteTask(taskId);
+    } on NetworkException {
+      rethrow;
+    } catch (e) {
+      throw NetworkException('Failed to delete task: $e');
+    }
+  }
 }

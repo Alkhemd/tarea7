@@ -30,4 +30,9 @@ class TasksRemoteDataSource {
         .map((json) => TaskModel.fromJson(json as Map<String, dynamic>))
         .toList();
   }
+
+  // DELETE: Delete a task
+  Future<void> deleteTask(int taskId) async {
+    await _dioClient.delete('/posts/$taskId');
+  }
 }
